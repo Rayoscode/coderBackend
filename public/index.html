@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Backend CoderHouse</title>
+</head>
+<body>
+    <h1>Form para entrega</h1>
+    <form class="contentForm" action="/api/productos" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="contentInput">
+            <label for="title">Title:</label>
+            <input id="title" name="title" type="text">
+        </div>
+        <div class="contentInput">
+            <label for="thumbnail">Thumbnail:</label>
+            <input id="thumbnail" name="thumbnail" type="text">
+        </div>
+        <div class="contentInput">
+            <label for="price">Price:</label>
+            <input id="price" name="price" type="number">
+        </div>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

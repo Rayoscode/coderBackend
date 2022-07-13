@@ -74,7 +74,7 @@ class contenedor {
                     objetos.splice(i,1);
                 }
             }
-            console.log(objetos)
+
             try{
                 await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(objetos, null, 2));
                 
@@ -95,7 +95,27 @@ class contenedor {
             console.log("Error en borrar el archivo:",error);
         }
     }
+
+    async upgradeByID(objectNew){
+        let objetos = await this.getAll();
+        objetos.forEach((obj )=>{
+            if(obj.id == objectNew.id){
+                obj.title = objectNew.title;
+                obj.thumbnail = objectNew.thumbnail;
+                obj.price = objectNew.price;
+            }
+        })
+        this.deleteAll();
+        try{
+                await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(objetos, null, 2));
+            }catch{
+                throw new Error('Error de escritura de archivo');
+            }
+
+    }
+
 }
+
 exports.contenedor = contenedor;
 
 
