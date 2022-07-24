@@ -9,18 +9,36 @@
     "title": "Globo Terráqueo",
     "price": 345.67,
     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
-    "id": 3
+    "id": 2
   },
   {
-    "id": 4,
+    "id": 3,
     "title": "Calculadora",
     "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
     "price": 234.56
   },
   {
-    "id": 5,
-    "title": "asde",
-    "thumbnail": "asd",
+    "id": 4,
+    "title": "Lapiz",
+    "thumbnail": "https://cdn2.iconfinder.com/data/icons/flat-pack-1/64/Pencil-256.png",
     "price": "123"
+  },
+  {
+    "id": 5,
+    "title": "Libro",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/branding-flat/512/brand_book-128.png",
+    "price": "500"
+  },
+  {
+    "id": 6,
+    "title": "Pincel",
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/general-office/91/General_Office_11-256.png",
+    "price": "233"
+  },
+  {
+    "id": 7,
+    "title": "Mochila",
+    "thumbnail": "https://cdn1.iconfinder.com/data/icons/camping-65/500/backpack-256.png",
+    "price": "10000"
   }
 ]

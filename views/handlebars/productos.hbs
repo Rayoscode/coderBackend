@@ -1,0 +1,14 @@
+
+<section>
+        {{#unless datos.length}}
+            <h2>No hay datos cargados</h2>
+        {{else}}
+            {{#each datos}}
+                <div>
+                    <p> <span>{{title}} </span></p>
+                    <p><span>{{price}} </span></p>
+                    <img src="{{thumbnail}}">
+                </div>
+            {{/each}}
+        {{/unless}}
+</section>

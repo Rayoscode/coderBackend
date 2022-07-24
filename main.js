@@ -1,13 +1,15 @@
 
 // REQUIRE
 
-const contenedor = require("./contenedorClass.js");
+const contenedor = require("./modules/contenedorClass.js");
 const express = require("express");
 const {Router} = express;
+const plantillas = require('./modules/plantillasClass');
+const productosRouter = require("./modules/productosREST");
+const handlebars = require('express-handlebars');
 
 
 const app = express();
-const router = Router();
 const server = app.listen(8080, ()=>{
         console.log("Se inició el server")
 })
@@ -37,7 +39,22 @@ server.on("error",(error)=>{console.log("Error:",error)})
 app.use('/static',express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({extended : true}))
-app.use('/api',router);
+app.use('/api',productosRouter);
+app.use('/api/plantillas', plantillas);
+
+// View Engine
+
+app.engine('hbs', handlebars.engine({
+    extname: '.hbs',
+    defaultLayout: 'index.hbs',
+    layoutsDir: __dirname + '/views/handlebars/layouts',
+    partialsDir: __dirname + '/views/handlebars/partials'
+}))
+
+
+
+app.set('views','./views'); // PARA VER PUG Y EJS SE CAMBIA A ./views
+app.set('view engine','hbs');
 
 // APP GET
 
@@ -60,46 +77,7 @@ app.get('/productosRandom',(req,res)=>{
     res.send(objetos[index]);
 })
 
-// ROUTER api
-
-router.get('/productos',(req,res)=>{
-    const objetos = await ContenedorData.getAll();
-    res.json(objetos);
+app.get('/datos',(req,res)=>{
+    res.render('ejemplo');
 })
-
-router.get('/productos/:id',(req,res)=>{
-    const {id} = req.params;
-    ContenedorData.getById(id).then((obj)=>{res.json({result:'ok', objeto:obj})})
-})
-
-router.post('/productos', async (req,res)=>{
-    ContenedorData.save(req.body).then(idN => { res.json({ nuevo : req.body, id:idN,result:'ok' })})
-})
-
-router.put('/productos/:id',(req,res)=>{
-    const {id} = req.params;
-    ContenedorData.getById(id).then((resp)=>{
-        if(resp == undefined){
-            res.send({error:"producto no encontrado"})
-        } else{
-            const object = {...req.body,id};
-            ContenedorData.upgradeByID(object)
-            res.json(object);
-        }
-    })
-})
-
-router.delete('/productos/:id',(req,res)=>{
-    const {id} = req.params;
-    ContenedorData.getById(id).then((resp)=>{
-        if(resp == undefined){
-            res.send({error:"producto no encontrado"})
-        } else{
-
-            ContenedorData.deleteByID(id);
-            res.json({result:'ok'})
-        }
-    })
-})
-
 
