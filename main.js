@@ -36,7 +36,7 @@ server.on("error",(error)=>{console.log("Error:",error)})
 
 // MIDDLEWARE
 
-app.use('/static',express.static(__dirname + '/public'));
+
 app.use(express.json());
 app.use(express.urlencoded({extended : true}))
 app.use('/api',productosRouter);
@@ -53,9 +53,9 @@ app.engine('hbs', handlebars.engine({
 
 
 
-app.set('views','./views'); // PARA VER PUG Y EJS SE CAMBIA A ./views
-app.set('view engine','hbs');
-
+app.set('views','./views'); 
+app.set('view engine','pug'); // Para ver pug cambiar a pug y lo mismo para ejs
+app.use('/static',express.static(__dirname + '/public'));
 // APP GET
 
 app.get('/',(req,res)=>{
@@ -65,6 +65,10 @@ app.get('/',(req,res)=>{
 app.get('/style.css', function(req, res) {
     res.sendFile(__dirname + "/public/style.css");
 });
+
+plantillas.get('/pug/style.css',(req,res)=>{
+    res.sendFile(__dirname + "/public/style.css");
+})
 
 app.get('/productos',async (req,res)=>{
     const objetos = await ContenedorData.getAll();

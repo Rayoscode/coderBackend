@@ -1,18 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
 body{
-    font-family: 'Roboto', sans-serif;
-    background-color: #6BAB90;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #3B429F;
+    color: white;
+    text-align: center;
 }
 
 h1{
-    color: white;
+    text-align: center;
+    margin:20px 0px;
+    animation: aparecer 0.7s linear 1 normal forwards;
 }
 
-.contentInput{
-    padding: 20px;
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    
 }
-
-.contentForm{
-    background-color: #FED9B7;
+.formContainer form{
+    background-color: #DA4167;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px;
+    padding: 30px;   
     border-radius: 20px;
-    width: 20%;
+    animation: aparecer 0.7s linear 1 normal forwards;
+    color: #fff;
+
+    /* #bb3758; */
+     }
+
+.formInputBlock{
+    
+    margin:5px 0px;
+    padding:5px 0px;
+}
+.formInputBlock input{
+    padding: 5px 5px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border:none;
+    transition: all linear 0.3s ;
+    
+}
+
+.formInputBlock input:focus{
+    border:none;
+    outline: none;
+    box-shadow: 0px 0px 4px rgb(155, 76, 76);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.formInputBlock label{
+    display: block;
+    text-align: left;
+    margin: 0 0 0 -5px
+}
+
+.formButton{
+    border:none;
+    background-color: #FAA300;
+    padding: 10px 20px;
+    margin:20px 0 0 0 ;
+    color:#fff;
+    cursor:pointer;
+    font-size: 1rem;
+    border-radius: 20px;
+    transition: all 0.2s ease-in;
+}
+
+.formButton:hover{
+    background-color: #FA8100;
+}
+
+.titulo1{
+    background-color: #3B429F;
+}
+
+.contenedorProductos{
+    background-color: #DA4167;
+    text-align: center;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    
+}
+
+.contenedorProductos div{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    
+    
+}
+
+.contenedorProductos div p{
+
+}
+
+.contenedorProductos div img{
+    width: 60px;
+    padding: 10px;
+    height: 60px;
+}
+
+@keyframes aparecer{
+    0%{
+        opacity: 0;
+        
+    }
+    
+    100%{
+
+        opacity: 1;
+    }
 }

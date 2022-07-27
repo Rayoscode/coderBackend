@@ -40,5 +40,11 @@
     "title": "Mochila",
     "thumbnail": "https://cdn1.iconfinder.com/data/icons/camping-65/500/backpack-256.png",
     "price": "10000"
+  },
+  {
+    "id": 8,
+    "title": "Anillos",
+    "thumbnail": "https://cdn2.iconfinder.com/data/icons/games-6/64/_lord_of_the_rings_ring-256.png",
+    "price": "10000"
   }
 ]
