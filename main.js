@@ -7,21 +7,20 @@ const {Router} = express;
 const plantillas = require('./modules/plantillasClass');
 const productosRouter = require("./modules/productosREST");
 const handlebars = require('express-handlebars');
+const { Server: HttpServer } = require("http");
+const { Server: IOServer } = require("socket.io");
 
 
 const app = express();
-const server = app.listen(8080, ()=>{
-        console.log("Se inició el server")
-})
-
+const httpServer = new HttpServer(app);
+const io = new IOServer(httpServer);
 const ContenedorData = new contenedor.contenedor('./Productos.txt');
 let objetos;
 
+httpServer.listen(8080,()=>{
+        console.log("Se inicio el server")
+});
 // FUNCIONES
-
-const getIntRandomArray = (length) =>{
-    return    Number.parseInt(Math.random()*length);
-}
 
 const getObjetos = ()=>{
     
@@ -32,7 +31,7 @@ objetos = getObjetos();
 
 // ERROR EVENT
 
-server.on("error",(error)=>{console.log("Error:",error)})
+httpServer.on("error",(error)=>{console.log("Error:",error)})
 
 // MIDDLEWARE
 
@@ -52,36 +51,46 @@ app.engine('hbs', handlebars.engine({
 }))
 
 
-
 app.set('views','./views'); 
-app.set('view engine','pug'); // Para ver pug cambiar a pug y lo mismo para ejs
-app.use('/static',express.static(__dirname + '/public'));
+app.set('view engine','ejs'); // Para ver pug cambiar a pug y lo mismo para ejs
+// app.use('/static',express.static(__dirname + '/public'));
+app.use(express.static('public'));
 // APP GET
 
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname + '/public/index.html')
-    
-})
-app.get('/style.css', function(req, res) {
-    res.sendFile(__dirname + "/public/style.css");
-});
-
-plantillas.get('/pug/style.css',(req,res)=>{
-    res.sendFile(__dirname + "/public/style.css");
+    res.sendFile('./index.html',{root:__dirname });
 })
 
-app.get('/productos',async (req,res)=>{
-    const objetos = await ContenedorData.getAll();
-    res.send(objetos);
-
+app.get("/chat",(req,res)=>{
+    res.sendFile('./public/chat.html',{root:__dirname});
 })
 
-app.get('/productosRandom',(req,res)=>{
-    const index =getIntRandomArray(objetos.length)
-    res.send(objetos[index]);
+app.get('/style.css',(req,res)=>{
+    res.sendFile('./style.css');
 })
 
-app.get('/datos',(req,res)=>{
-    res.render('ejemplo');
+app.get('/productos',(req,res)=>{
+    res.sendFile(__dirname + '/Productos.txt');
+})
+
+// IO - SOCKET
+
+let mensajes=[];
+
+io.on('connection',async (socket)=>{
+    // socket.on('actualizarProductos',async (producto) =>{
+    //     ContenedorData.save(producto);
+    //     const productos = await ContenedorData.getAll();
+    //     await io.sockets.emit('recibidoProductos',productos);
+    // })
+
+    socket.on('saveMessage',message =>{
+        mensajes.push(message);
+        io.sockets.emit('currentChat',mensajes);
+    })
+    socket.on('nuevoProducto',async (producto)=>{
+        ContenedorData.save(producto);
+        io.sockets.emit('actualizarProductos',await ContenedorData.getAll());
+    })
 })
 

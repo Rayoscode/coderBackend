@@ -8,24 +8,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="/socket.io/socket.io.js"></script>
     <title>Backend CoderHouse</title>
 </head>
 <body>
     <h1>Form para entrega</h1>
-    <form class="contentForm" action="/api/productos" method="post" enctype="application/x-www-form-urlencoded">
-        <div class="contentInput">
-            <label for="title">Title:</label>
-            <input id="title" name="title" type="text">
+    <!-- <form class="contentForm" action="api/plantillas/ejs/productos" method="post" enctype="application/x-www-form-urlencoded"> -->
+        <div class="contentForm">
+            <div class="contentInput">
+                <label for="title">Title:</label>
+                <input id="title" name="title" type="text">
+            </div>
+            <div class="contentInput">
+                <label for="thumbnail">Thumbnail:</label>
+                <input id="thumbnail" name="thumbnail" type="text">
+            </div>
+            <div class="contentInput">
+                <label for="price">Price:</label>
+                <input id="price" name="price" type="number">
+            </div>
+            <button id="buttonEnviar">Enviar</button>
         </div>
-        <div class="contentInput">
-            <label for="thumbnail">Thumbnail:</label>
-            <input id="thumbnail" name="thumbnail" type="text">
-        </div>
-        <div class="contentInput">
-            <label for="price">Price:</label>
-            <input id="price" name="price" type="number">
-        </div>
-        <button type="submit">Enviar</button>
-    </form>
+        
+    <!-- </form> -->
+    <section class="contenedorProductos" id="detalleProductos">
+
+    </section>
+    <script src="./index.js"></script>
 </body>
 </html>

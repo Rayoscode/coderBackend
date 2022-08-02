@@ -20,7 +20,7 @@ router.post('/pug/productos',async (req,res)=>{
     res.render('pug/productos.pug',{datos});
 })
 
-router.get('/ejs/ingregarProducto',(req,res)=>{
+router.get('/',(req,res)=>{
     res.render('ejs/ingresoProducto.ejs');
 })
 
