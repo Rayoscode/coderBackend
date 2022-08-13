@@ -1,0 +1,1 @@
+(()=>{var r={860:r=>{"use strict";r.exports=require("express")}},e={};function t(o){var s=e[o];if(void 0!==s)return s.exports;var i=e[o]={exports:{}};return r[o](i,i.exports,t),i.exports}t(860)().listen(8080,(()=>{console.log("Server listening to port:8080")}))})();
