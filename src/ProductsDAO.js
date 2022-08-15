@@ -1,17 +1,16 @@
-const { options } = require('../options/sqlite3');
-
-const knex = require('knex')(options)
-
 
 class ProductsDAO {
 
-    insertMessage = async (Message, Name)=>{
+    constructor(TableName,Options){
+        this.knex = require('knex')(Options);
+        this.tableName=TableName;
+    }
+    
+    insertProduct = async (Title, Price,Thumbnail)=>{
         try{
-            await knex('PRODUCTOS').insert({message:Message,name:Name})
+            await this.knex(this.tableName).insert({title:Title,price:Price, thumbnail: Thumbnail})
         } catch(error){
             console.log(error)
-        } finally{
-            knex.destroy();
         }
     }
 
@@ -23,27 +22,31 @@ class ProductsDAO {
 
     }
 
-    selectMessage = ()=>{
-
+    selectProductos = async()=>{
+        try{
+            const productos = await this.knex.from(this.tableName).select('*');
+            return productos;
+        } catch(err){
+            console.log(err)
+        } 
     }
 
     createTable = async ()=>{
     
         try {
-            if(await knex.schema.hasTable('PRODUCTOS')){
-                await knex.schema.dropTable('PRODUCTOS');
+            if(await (this.knex.schema.hasTable(this.tableName))){
+                await this.knex.schema.dropTable(this.tableName);
             }
-            await knex.schema.createTable('PRODUCTOS',table =>{
+            await this.knex.schema.createTable(this.tableName,table =>{
                 table.increments('id');
-                table.string('name',30);
-                table.string('message',100);
+                table.string('title',30);
+                table.string('thumbnail',300);
+                table.float('price')
 
             })
         } catch (error){
             console.log(error)
-        } finally{
-            knex.destroy();
-        }
+        } 
     }
 
 

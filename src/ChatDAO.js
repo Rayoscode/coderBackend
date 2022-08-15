@@ -1,18 +1,17 @@
-const { options } = require('../options/sqlite3');
 
-const knex = require('knex')(options)
 
 
 class ChatDAO {
-
+    constructor(TableName,Options){
+        this.knex = require('knex')(Options);
+        this.tableName = TableName;
+    }
     insertMessage = async (Message, Name)=>{
         try{
-            await knex('MENSAJES').insert({message:Message,name:Name})
+            await this.knex(this.tableName).insert({message:Message,name:Name})
         } catch(error){
             console.log(error)
-        } finally{
-            knex.destroy();
-        }
+        } 
     }
 
     deleteMessage = ()=>{
@@ -23,17 +22,22 @@ class ChatDAO {
 
     }
 
-    selectMessage = ()=>{
-
+    selectMessage = async()=>{
+        try {
+            const DatosMensajes = await this.knex.from(this.tableName).select('*')
+            return DatosMensajes;
+        } catch(err){
+            console.log(err)
+        } 
     }
 
     createTable = async ()=>{
     
         try {
-            if(await knex.schema.hasTable('MENSAJES')){
-                await knex.schema.dropTable('MENSAJES');
+            if(await (  this.knex.schema.hasTable(this.tableName))){
+                await this.knex.schema.dropTable(this.tableName);
             }
-            await knex.schema.createTable('MENSAJES',table =>{
+            await this.knex.schema.createTable(this.tableName,table =>{
                 table.increments('id');
                 table.string('name',30);
                 table.string('message',100);
@@ -41,9 +45,7 @@ class ChatDAO {
             })
         } catch (error){
             console.log(error)
-        } finally{
-            knex.destroy();
-        }
+        } 
     }
 
 
