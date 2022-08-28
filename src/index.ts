@@ -15,16 +15,6 @@ app.on("Error",(error)=>{
 })
 
 
-app.use(express.static('public'))
-app.use('/api/productos',routerProductos)
-// app.use('/api/carrito',carritoRouter)
-
-
-
-app.get('/',(req,res)=>{
-    res.sendFile('./index.html')
-})
-
-app.get('/style.css',(req,res)=>{
-    res.sendFile('style.css')
-})
+app.use(express.static('public'));
+app.use('/api/productos',routerProductos);
+app.use('/api/carrito',carritoRouter)

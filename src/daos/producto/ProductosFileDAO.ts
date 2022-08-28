@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import Producto from './producto';
+import Producto from '../../producto';
 
 
 export default class ContenedorProductos {

@@ -1,29 +1,34 @@
 import {Router} from 'express'
 import Producto from './producto';
-import ContenedorProductos from './ProductosFile';
-const routerProductos = Router()
-
-const ContenedorDatos = new ContenedorProductos("../productos.txt");
+const routerProductos = Router();
+const ProductosDAO = require('./daos/producto/ProductosMongoDAO');
+const mongoose = require('mongoose');
+const ProductosModel = require('./models/ProductoModel')
+const ProductosDB = new ProductosDAO("",ProductosModel.productosSchema,mongoose); 
 
 routerProductos.get('/:id?',async (req,res)=>{
     const {id} = req.params;
+    let datos;
     if(id === undefined){
-        const objetos = await ContenedorDatos.getAll()
-        res.json(objetos)
+        datos = await ProductosDB.readProduct();
+        res.json(datos)
     } else {
-        const objeto = await ContenedorDatos.getById(id)
-        res.json(objeto)
+        datos = await ProductosDB.readProduct(id)
+        res.json(datos)
     }   
 })
 
 routerProductos.post('/', (req,res)=>{
     const {user} = req.query
     if(user === "Admin"){
-    const productoAAgregar:Producto = req.body
+    let productoAAgregar:Producto = req.body
     productoAAgregar.timestamp = Date.now()
-    ContenedorDatos.save(productoAAgregar);
+    let idNew = ProductosDB.readLastID() + 1;
+    productoAAgregar.id = idNew;
+    console.log(productoAAgregar);
+    ProductosDB.insertProduct(productoAAgregar);
     } else{
-        res.json({Error:"Permisos denegados"})
+        res.json({Error:"Permisos denegados"});
     }
     
 })
@@ -33,10 +38,9 @@ routerProductos.put(':id',(req,res)=>{
     const {id} = req.params;
     const {user} = req.query;
     if(user==="Admin"){
-    productoAModificar.id=id
-    ContenedorDatos.upgradeByID(productoAModificar)
+    ProductosDB.updateProductByID(id,productoAModificar);
     } else {
-        res.json({Error:"Permiso Denegado"})
+        res.json({Error:"Permiso Denegado"});
     }
     
 })
@@ -45,13 +49,9 @@ routerProductos.delete(':id',(req,res)=>{
     const {id} = req.params;
     const {user} = req.query
     if(user==="Admin"){
-        ContenedorDatos.deleteByID(id)
+        ProductosDB.deleteByID(id);
     } else{
-        res.json({Error:"Permiso Denegado"})
+        res.json({Error:"Permiso Denegado"});
     }
 })
-
-const p1 : Producto = {timestamp:Date.now(),nombre:"Procesador Intel I9",descripcion:"Tiene muchos nucleos",foto:"https://http2.mlstatic.com/D_NQ_NP_940351-MLA48284640865_112021-O.webp",precio:256000,stock:20,codigo:"E-0001"}
-ContenedorDatos.save(p1);
-
 export default routerProductos
