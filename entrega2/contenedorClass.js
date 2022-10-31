@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-class contenedor {
+class Contenedor {
     
     constructor (nombreArchivo){
         this.nombreArchivo = nombreArchivo;
@@ -18,10 +18,7 @@ class contenedor {
                     max = valor.id;}
                 }
             );
-
-            const obj = {id:max + 1, title:objeto.title, thumbnail:objeto.thumbnail,price:objeto.price};
-            objetos.push(obj)
-
+            objetos.push({id:max + 1, title:objeto.title, thumbnail:objeto.thumbnail,price:objeto.price})
             try{
                 await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(objetos, null, 2));
                 return max+1;
@@ -97,4 +94,23 @@ class contenedor {
     }
 
 }
+
+
+const cont = new Contenedor("productos.txt")
+
+
+
+
+ const func = async ()=>{
+    await cont.save({title:'Escuadra',thumbnail:"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",price:123.45})
+    await cont.save({title:'Calculadora',thumbnail:"https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",price:234.56})
+    await cont.save({title:"Globo Terráqueo",thumbnail:"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",price:345.67})
+    await cont.save({title:'🐱‍🐉🐱‍💻🐱‍🚀✨',thumbnail:"123",price:123})
+cont.getById(4).then((res)=>{
+    console.log(res)
+})
+cont.deleteByID(4) 
+}
+
+ func();
 
