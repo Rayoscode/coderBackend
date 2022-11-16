@@ -10,10 +10,10 @@ class Contenedor {
 
         try {
             const objetos = await this.getAll();
-            objetos.push({ id: objetos.length + 1, title: objeto.title, thumbnail: objeto.thumbnail, price: objeto.price })
+            objetos.push({ id: objetos[objetos.length - 1].id + 1, title: objeto.title, thumbnail: objeto.thumbnail, price: objeto.price })
             try {
                 await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(objetos, null, 2));
-                return objetos.length;
+                return objetos[objetos.length - 1].id;
             } catch (error) {
                 throw new Error('Save: Error de escritura de archivo ' + error);
             }
@@ -79,7 +79,23 @@ class Contenedor {
         }
     }
 
+    async upgradeById(newObj) {
+        try {
+            const objs = await this.getAll();
+            const index = objs.findIndex(obj => newObj.id === obj.id);
+            if (index === undefined) {
+                return null;
+            }
+            objs[index] = newObj;
+            await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(objs, null, 2))
+            return newObj.id
+        } catch (error) {
+            throw new Error("Error actualizacion obj:" + error)
+        }
+    }
+
 }
+
 
 
 module.exports = Contenedor
