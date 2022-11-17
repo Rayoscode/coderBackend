@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+html{
+    
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+body{
+    background-color: rgb(135, 186, 252);
+}
+h1{
+    margin: 20px;
+}
+
+section{
+    text-align: center;
+    display: inline-block;
+    margin:20px;
+    color:white;
+    background-color: rgb(220, 115, 115);
+    border-radius: 20px;
+}
+
+div{
+    padding: 15px 10px;
+}
