@@ -1,0 +1,18 @@
+html
+    head
+        title Pug Productos
+        link(rel="stylesheet", href="http://localhost:8080/style.css")
+    body 
+    if datos.length === 0
+        h2 No hay datos cargados
+    else
+        h1(class="titulo1") Productos Subidos
+        section(class="contenedorProductos")
+            each dato in datos
+                div
+                    p  
+                        span=dato.title
+                    p   $ 
+                        span=dato.price
+                    p
+                        img(src = dato.thumbnail)

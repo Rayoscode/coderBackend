@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #333552;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0px;
+  animation: aparecer 0.7s linear 1 normal forwards;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.formContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0px;
+  background: #333552;
+  animation: aparecer 0.7s linear 1 normal forwards;
+  color: #fff;
+  position: relative;
+  z-index: 10;
+  /* #bb3758; */
+}
+
+#formtest ::before {
+  content: "";
+  position: absolute;
+  width: 105%;
+  top: -5;
+  left: 5;
+  height: 105%;
+  background: linear-gradient(90deg, red, blue);
+  z-index: -1;
+}
+
+.formInputBlock {
+  margin: 5px 0px;
+  padding: 5px 0px;
+}
+.formInputBlock input {
+  padding: 5px 5px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  transition: all linear 0.3s;
+}
+
+.formInputBlock input:focus {
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 4px rgb(155, 76, 76);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.formInputBlock label {
+  display: block;
+  text-align: left;
+  margin: 0 0 0 -5px;
+}
+
+.formButton {
+  border: none;
+  background-color: #faa300;
+  padding: 10px 20px;
+  margin: 20px 0 0 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 20px;
+  transition: all 0.2s ease-in;
+}
+
+.formButton:hover {
+  background-color: #fa8100;
+}
+
+.titulo1 {
+  background-color: #3b429f;
+}
+
+.contenedorProductos {
+  background-color: #da4167;
+  text-align: center;
+  display: inline-block;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.contenedorProductos div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+}
+
+.contenedorProductos div img {
+  width: 60px;
+  padding: 10px;
+  height: 60px;
+}
+
+@keyframes aparecer {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes color_rotate {
+  0% {
+    border-color: #563469;
+  }
+
+  25% {
+    border-color: #4d5186;
+  }
+
+  50% {
+    border-color: #434996;
+  }
+
+  75% {
+    border-color: #2d38c9;
+  }
+
+  100% {
+    border-color: #0616f3;
+  }
+}

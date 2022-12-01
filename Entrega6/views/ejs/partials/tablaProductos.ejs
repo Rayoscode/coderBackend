@@ -1,0 +1,17 @@
+<section>
+    <h2> Hola</h2>
+    <div>
+        <% if(datos.length === 0){ %>
+            <p>No se agregaron Productos</p>
+        <% }  else { %>
+            <% datos %>
+            <% for(let i =0;i<datos.length;i++){ %> 
+                <div>
+                    <p><span>Producto:<%=  datos[i].title %></span> </p>
+                    <p><span>Precio:<%= datos[i].price %></span> </p>
+                    <img src="<%= datos[i].thumbnail %>"></img>
+                </div>
+        <% } } %> 
+    </div>
+
+</section>

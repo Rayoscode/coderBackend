@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Escuadra",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+    "price": 123.45
+  },
+  {
+    "id": 2,
+    "title": "Calculadora",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
+    "price": 234.56
+  },
+  {
+    "title": "tierra",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/unigrid-phantom-science-vol-1/60/003_042_planet_earth_globe_world_worldwide_space_cosmos_science_solar_system-256.png",
+    "price": "9999.999",
+    "id": 3
+  },
+  {
+    "id": 4,
+    "title": "la tierra",
+    "thumbnail": "https://cdn4.iconfinder.com/data/icons/general-office/91/General_Office_11-256.png",
+    "price": "456"
+  },
+  {
+    "id": 5,
+    "title": "CACA",
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/object-emoji/50/Poop-256.png",
+    "price": "0"
+  }
+]
