@@ -1,0 +1,12 @@
+[
+  {
+    "nombre": "ps5",
+    "descripcion": "Consola muy cara",
+    "codigo": "c-001",
+    "foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSJCE1w5cYd2ctx0GKZKOh4mZ8UhZmbsd8XQ&usqp=CAU",
+    "precio": "500000",
+    "stock": "5",
+    "id": 1,
+    "timeStamp": 1670198097760
+  }
+]
