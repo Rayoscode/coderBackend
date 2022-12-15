@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #333552;
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0px;
+  animation: aparecer 0.7s linear 1 normal forwards;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 50px 0;
+}
+
+#productosContainer div {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 20px;
+  background-color: rgb(133, 49, 230);
+  border-radius: 10px;
+}
+
+#productosContainer img {
+  width: 100px;
+  height: 100px;
+}
+
+#productosContainer div p span {
+  margin: 0 10px;
+}
+
+#chatContainer > div {
+  padding: 0px 20px;
+  width: 500px;
+  text-align: left;
+}
+
+#chatContainer div p {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+
+#chatContainer div div {
+  display: inline-block;
+  background-color: rgb(55, 118, 255);
+  margin: 10px 0;
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
+#chatContainer div i {
+  float: right;
+  margin-top: 20px;
+}
+
+.chat {
+  background-color: rgb(68, 68, 68);
+  padding: 20px 10px;
+  border-radius: 20px;
+}
