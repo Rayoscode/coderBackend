@@ -51,9 +51,4 @@ io.on("connection", async (socket) => {
         let men = await chatDB.selectMessage()
         io.sockets.emit("messages", men);
     });
-    socket.on("newProducto", async (producto) => {
-        await ProductosDB.insertProduct(producto.title, producto.price, producto.thumbnail);
-        let prods = await ProductosDB.selectProductos();
-        io.sockets.emit("productos", prods);
-    });
 });
