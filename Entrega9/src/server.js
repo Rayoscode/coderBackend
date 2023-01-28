@@ -29,7 +29,7 @@ app.use(session({
     secret: "entrega123",
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 36000 }
+    cookie: { maxAge: 360000 }
 }))
 
 

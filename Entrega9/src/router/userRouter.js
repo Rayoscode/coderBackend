@@ -23,7 +23,6 @@ userLoginRoutes.get('/login', (req, res) => {
 userLoginRoutes.post('/login', async (req, res) => {
 
     const { username, password } = req.body
-    console.log(username)
     const authenticated = await userService.authenticate(username, password)
     if (!authenticated) {
         return res.render('ejs/error.ejs', { error: "Credenciales invalidos" })
@@ -59,9 +58,9 @@ userLoginRoutes.get('/register', (req, res) => {
 
 userLoginRoutes.get('/logout', (req, res) => {
 
-    const { username } = req.session.username || ""
+    const data = { username: req.session.username || "" }
 
-    req.session.destroy(error => { error ? res.render('ejs/logout.ejs', username) : res.render('ejs/error.ejs', { error: "Error al eliminar sesion" }) })
+    req.session.destroy(error => { error ? res.render('ejs/error.ejs', { error: "Error al eliminar sesion " + error }) : res.render('ejs/logout.ejs', { data }) })
 
 
 })
