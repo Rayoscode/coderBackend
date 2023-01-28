@@ -28,5 +28,8 @@
     "title": "CACA",
     "thumbnail": "https://cdn3.iconfinder.com/data/icons/object-emoji/50/Poop-256.png",
     "price": "0"
+  },
+  {
+    "id": 6
   }
 ]

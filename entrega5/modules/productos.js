@@ -22,7 +22,7 @@ routerProductos.get('/:id', async (req, res) => {
 })
 
 routerProductos.post('/', async (req, res) => {
-
+    console.log(req.body)
     const { title, price, thumbnail } = req.body
     const id = await ContenedorDatos.save({ title: title, thumbnail: thumbnail, price: price })
     res.json(id)
