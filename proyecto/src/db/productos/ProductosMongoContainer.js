@@ -10,15 +10,15 @@ class ProductosMongoDBContainer {
 
     async create(producto) {
         try {
-            mongoose.connect(this.URL, {
+            await mongoose.connect(this.URL, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
 
             await productos.create({ ...producto });
-            mongoose.disconnect();
+            await mongoose.disconnect();
         } catch (error) {
-            mongoose.disconnect();
+            await mongoose.disconnect();
             throw new Error("Error al Create: " + error);
         }
     }
@@ -26,7 +26,7 @@ class ProductosMongoDBContainer {
     async read(id) {
         let res = null;
         try {
-            mongoose.connect(this.URL, {
+            await mongoose.connect(this.URL, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
@@ -35,17 +35,17 @@ class ProductosMongoDBContainer {
             } else {
                 res = await productos.find({ _id: id });
             }
-            mongoose.disconnect();
+            await mongoose.disconnect();
             return res;
         } catch (error) {
-            mongoose.disconnect();
+            await mongoose.disconnect();
             throw new Error("Error al Find: " + error);
         }
     }
 
     async upgrade(id, data) {
         try {
-            mongoose.connect(this.URL, {
+            await mongoose.connect(this.URL, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
@@ -59,14 +59,14 @@ class ProductosMongoDBContainer {
 
     async delete(id) {
         try {
-            mongoose.connect(this.URL, {
+            await mongoose.connect(this.URL, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
             await productos.deleteOne({ _id: id });
-            mongoose.disconnect();
+            await mongoose.disconnect();
         } catch (error) {
-            mongoose.disconnect();
+            await mongoose.disconnect();
             throw new Error("Error al Delete: " + error);
         }
     }

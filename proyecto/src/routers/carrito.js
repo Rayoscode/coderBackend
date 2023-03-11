@@ -1,5 +1,5 @@
 import { Router } from "express";
-import Service from "../service/serviceLogic.js";
+import Service from "../services/serviceLogic.js";
 
 
 const service = new Service()
