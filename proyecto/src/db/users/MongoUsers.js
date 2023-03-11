@@ -8,14 +8,14 @@ class UsersDB {
         this.URL = URL
     }
 
-    async create(username, password, pwdHash) {
+    async create(userData) {
         try {
             await mongoose.connect(this.URL, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             })
 
-            await users.create({ username: username, password: password, hash: pwdHash })
+            await users.create({ ...userData })
 
         } catch (error) {
             throw new Error('Error create User Collection:' + error)

@@ -7,14 +7,14 @@ class UserService {
         this.users = new UsersDB(process.env.MONGO_URL)
     }
 
-    async register(username, password) {
+    async register(dataUser) {
 
         try {
 
             const saltRounds = 10;
             const salt = await bcrypt.genSalt(saltRounds)
-            const pwdHash = await bcrypt.hash(password, salt)
-            await this.users.create(username, password, pwdHash)
+            const pwdHash = await bcrypt.hash(dataUser.password, salt)
+            await this.users.create({passwordHash: pwdHash,...dataUser} )
 
         } catch (error) {
             throw new Error("Error Registro Usuario: " + error)

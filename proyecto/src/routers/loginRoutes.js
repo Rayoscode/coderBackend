@@ -33,9 +33,10 @@ loginRoutes.post('/login',passport.authenticate("local",{successRedirect:'/api/p
 
 loginRoutes.get("/signup", (req, res) => {});
 
-loginRoutes.post("/signup", (req, res) => {
-  const { username, name, number, photo, age, email } = req.body;
+loginRoutes.post("/signup", async (req, res) => {
+  const { username, name, number, age, email } = req.body;
   try{
+    await userServices.register({ username, name, number, age, email })
     res.redirect("/");
   } catch(Error){
     res.redirect("/signup");
